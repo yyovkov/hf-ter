@@ -34,7 +34,7 @@ jobs:
 
       - name: Test
         run: |
-          docker run --rm test
+          docker run --rm test text-embeddings-router --help
 
       - name: Build and push
         uses: docker/build-push-action@v5
