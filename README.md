@@ -8,7 +8,7 @@ The goal is to demonstrate that the success of the build process on GitHub share
 
 * Build the docker image on **GitHub Shared Runner**
   * the github action is pushing the code to dockerhub registry
-  * Confirm the build is successfull (check the github action output)
+  * Confirm the build is successfull (check [github action output, section Test](https://github.com/yyovkov/hf-ter/actions/runs/8110753854/job/22168637202))
 
 * Run the docker image on your local *intel* or *m1* (*m2*, *m3*) machine
     ``` bash
