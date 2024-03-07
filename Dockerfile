@@ -1,7 +1,7 @@
 FROM lukemathwalker/cargo-chef:latest-rust-1.75-bookworm as builder
 #FROM --platform=linux/amd64 ubuntu as builder
 
-ARG TEI_VERSION='.1.1.0'
+ARG TEI_VERSION='1.1.0'
 #ENV PATH "/root/.cargo/bin:$PATH"
 
 RUN apt-get update \
@@ -25,8 +25,9 @@ RUN curl -o - https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PR
 
 RUN curl -sLo /tmp/tei.tgz https://github.com/huggingface/text-embeddings-inference/archive/refs/tags/v${TEI_VERSION}.tar.gz \
     && tar xf /tmp/tei.tgz -C /tmp \
-    && cd /tmp/text-embeddings-inference-v${TEI_VERSION} \
+    && cd /tmp/text-embeddings-inference-${TEI_VERSION} \
     && sed -i 's/^debug.*/debug = 0/g' Cargo.toml \
+    && sed -i '/target-cpu=native/d' .cargo/config.toml \
     && cargo install --path router -F candle -F mkl \
     && cd -
 
